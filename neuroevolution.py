@@ -6,10 +6,11 @@ class Neuron:
     #int i[]={1,2,3,4}
     #i[0]=5
     #{5,2,3,4}
+    global summation
     summation=0
     def __init__(self):
         self.data=[]
-    def NAND(i1,i2,i3):
+    def NAND(self, i1,i2,i3):
         summation=0
         inputs=[bias,i1,i2,i3]
         weights[0]=2
@@ -20,7 +21,7 @@ class Neuron:
             x=weights[i]
             y=inputs[i]
             summation+=(x*y)
-    def OR(i1,i2,i3):
+    def OR(self, i1,i2,i3):
         summation=0
         inputs=[bias,i1,i2,i3]
         weights[0]=1
@@ -29,13 +30,13 @@ class Neuron:
         weights[3]=0
         for i in range(0,4):
             summation= summation+(weights[i]*inputs[i])
-    def Output():
+    def Output(self):
         if(summation>1):
             return True
         else:
             return False
 
-n=Neuron()
+n=Neuron() #Neuron n= new Neuron();
 n.NAND(0,0,0)
 t1= n.Output()
 print t1

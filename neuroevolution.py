@@ -5,10 +5,10 @@ class Neuron:
     weights=[0,0,0,0]
     def __init__(self):
         self.data=[]
-    def NAND(self, i1,i2,i3):
+    def NAND(self, i1,i2,i3): #Weights that work for NAND whoo
         summation=0
         inputs=[bias,i1,i2,i3]
-        weights[0]=6
+        weights[0]=6 #-2+-2+-2 overrides the 6
         weights[1]=-2
         weights[2]=-2
         weights[3]=-2
@@ -17,7 +17,7 @@ class Neuron:
             y=inputs[i]
             summation+=(x*y)
         return summation
-    def OR(self, i1,i2,i3):
+    def OR(self, i1,i2,i3): #Weights the work for OR whoo
         summation=0
         inputs=[bias,i1,i2,i3]
         weights[0]=0
@@ -35,12 +35,12 @@ class Neuron:
 
 class EvoNeuron:
     global bias
-    bias=1
+    bias=1 #bias is always 1
     global weights
     def __init__(self):
         self.data=[]
-    def Summation(self, i1,i2,i3,w0,w1,w2,w3):
-        summation=0
+    def Summation(self, i1,i2,i3,w0,w1,w2,w3): #just does the function you want based on the weights given and calculates the sum
+        summation=0                            #...yeah so its like all universal and stuff
         inputs=[bias,i1,i2,i3]
         weights=[w0,w1,w2,w3]
         for i in range(0,4):
@@ -54,8 +54,12 @@ class EvoNeuron:
         else:
             return False
 
+
+#TODO EVOLVE STUFF
+
+#TEST CASES
 n=Neuron() #Neuron n= new Neuron();
-print "Our NAND:"
+print "Our NAND:" #NAND returns true for everything except 1,1,1 (ACTUAL NAND)
 i=n.NAND(0,0,0)
 t1= n.Output(i)
 print t1

@@ -1,3 +1,8 @@
+#IDEAS:
+#Only use the EvoNeuron class, where we can change the weights easily
+#Randomly change the weights to see what is better
+#decide the fittness based on how many things are correct based on what it SHOULD  be like: if something should be F,F,F and it gives F,F,T the fittness is true
+
 class Neuron:
     global bias
     bias=1

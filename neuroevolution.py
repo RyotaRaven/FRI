@@ -8,7 +8,7 @@ class Neuron:
     def NAND(self, i1,i2,i3):
         summation=0
         inputs=[bias,i1,i2,i3]
-        weights[0]=2
+        weights[0]=6
         weights[1]=-2
         weights[2]=-2
         weights[3]=-2

@@ -33,8 +33,39 @@ class Neuron:
         else:
             return False
 
+class EvoNeuron:
+    global bias
+    bias=1
+    global weights
+    weights=[0,0,0,0]
+    def __init__(self, w0,w1,w2,w3):
+        self.data=[]
+        weights[0]=w0
+        weights[1]=w1
+        weights[2]=w2
+        weights[3]=w3
+    def NAND(self, i1,i2,i3):
+        summation=0
+        inputs=[bias,i1,i2,i3]
+        for i in range(0,4):
+            x=weights[i]
+            y=inputs[i]
+            summation+=(x*y)
+        return summation
+    def OR(self, i1,i2,i3):
+        summation=0
+        inputs=[bias,i1,i2,i3]
+        for i in range(0,4):
+            summation= summation+(weights[i]*inputs[i])
+        return summation
+    def Output(self,x):
+        if(x>1):
+            return True
+        else:
+            return False
+
 n=Neuron() #Neuron n= new Neuron();
-print "NAND:"
+print "Our NAND:"
 i=n.NAND(0,0,0)
 t1= n.Output(i)
 print t1
@@ -59,7 +90,7 @@ print t7
 i=n.NAND(1,1,1)
 t8= n.Output(i)
 print t8
-print "OR:"
+print "Our OR:"
 i=n.OR(0,0,0)
 t1= n.Output(i)
 print t1

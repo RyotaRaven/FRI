@@ -37,26 +37,16 @@ class EvoNeuron:
     global bias
     bias=1
     global weights
-    weights=[0,0,0,0]
-    def __init__(self, w0,w1,w2,w3):
+    def __init__(self):
         self.data=[]
-        weights[0]=w0
-        weights[1]=w1
-        weights[2]=w2
-        weights[3]=w3
-    def NAND(self, i1,i2,i3):
+    def Summation(self, i1,i2,i3,w0,w1,w2,w3):
         summation=0
         inputs=[bias,i1,i2,i3]
+        weights=[w0,w1,w2,w3]
         for i in range(0,4):
             x=weights[i]
             y=inputs[i]
             summation+=(x*y)
-        return summation
-    def OR(self, i1,i2,i3):
-        summation=0
-        inputs=[bias,i1,i2,i3]
-        for i in range(0,4):
-            summation= summation+(weights[i]*inputs[i])
         return summation
     def Output(self,x):
         if(x>1):

@@ -32,22 +32,20 @@ class NeuronEvolution:
     number_Of_Tweaks=0;
     randomWeights = []
     tweakedWeights=[]
-    wWeights=[]
-
+    activation=0
+    
     def __init__(self,numTweaks):
         number_Of_Tweaks=numTweaks
         
     def getWeights(self):
         for i in range(0, 3):
             self.randomWeights[i]=random.uniform(-1,1)
+        for i in range(0,inputs.__len__()):
+            activation += self.weights[i]*inputs[i]
             
         while activation<=1:
             for j in range(0,3):
                 tweakedWeights[j]=self.randomWeights[j]*random.uniform(-1,1)
-            for i in rangle(0,self.number_Of_Tweaks):
-                wWeights[i]=self.randomWeights[i]*random.uniform(-1,1)
-                if quality(wWeights)> quality(tweakedWeights) :
-                    tweakedWeights=wWeights[:]
             if quality(tweakedWeights) > quality(self.randomWeights):
                 randomWeights=tweakedWeights
         return randomWeights

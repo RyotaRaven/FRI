@@ -1,18 +1,7 @@
-#IDEAS:
-#Only use the EvoNeuron class, where we can change the weights easily
-#Randomly change the weights to see what is better
-#decide the fittness based on how many things are correct based on what it SHOULD  be like: if something should be F,F,F and it gives F,F,T the fittness is true
-
-#This design for the neuron object will be easier to genetically alter, because each neuron will have an array of weights
-#In addition, we found out that python doesn't use getter or setter methods in ojects, but this thing called properties
-#so for all the object variables you can just do like myNeuron.weights = [1,2,3] or myNeuron.bias = orNeuron.bias etc.
-
 import random
 
 class Neuron:
     weights = []
-    #I figured you might want to change the amount of inputs in the future so this
-    #constructor initializes a neuron where weights[0] is the bias weight and weights[1-n] are the normal input weights
     def __init__(self,weights):
         self.weights = weights
     #evaluate the current neuron against an array of inputs and returns whether
@@ -52,16 +41,28 @@ class NeuronEvolution:
         return randomWeights
 
 class NeuralNetwork:
+    global hidNeuron1
+    global hidNeuron2
+    global outNeuron
+    global bias
+    bias=1
     def __init__(self, weight1,weight2, weight3):
-        hidNeuron1 =Neuron(weight1)
-        hidNeuron2 =Neruon(weight2)
-        outNeuron =Neruon(weight3)
+        self.hidNeuron1 =Neuron(weight1)
+        self.hidNeuron2 =Neuron(weight2)
+        self.outNeuron =Neuron(weight3)
         
     def evaluate(self, inputs):
-        one=hidNeuron1.eval(inputs)
-        two=hidNeuron2.eval(inputs)
-        out=[one,two]
-        return outNeruron(out)
+        input1= [inputs.__len__()+1]
+        input2= [inputs.__len__()+1]
+        input1[0]=1
+        input2[0]=1
+        for i in range (1, (inputs.__len__()-1)):
+            input1[i]=inputs[i-1]  #index out of bounds
+            input2[i]=inputs[i-1]
+        one=self.hidNeuron1.eval(input1)
+        two=self.hidNeuron2.eval(input2)
+        out=[1,one,two]
+        return self.outNeruron(out)
         
 
 #return the amount of times the output of a neuron was the same as the expected output that was passed in an array
@@ -111,4 +112,17 @@ print (orNeuron.eval([1,0,0]))
 print (orNeuron.eval([1,0,1]))
 print (orNeuron.eval([1,1,0]))
 print (orNeuron.eval([1,1,1]))
+print ("Quality of OR:" , quality(orNeuron,[False,True,True,True,True,True,True,True]))
+
+network = NeuralNetwork([6,-2,-2,-2], [6,-2,-2,-2], [0,1,1])
+print ("Our NAND network:")
+#NAND returns true for everything except 1,1,1 (ACTUAL NAND)
+print (network.evaluate([0,0,0]))
+print (network.evaluate([0,0,1]))
+print (network.evaluate([0,1,0]))
+print (network.evaluate([0,1,1]))
+print (network.evaluate([1,0,0]))
+print (network.evaluate([1,0,1]))
+print (network.evaluate([1,1,0]))
+print (network.evaluate([1,1,1]))
 print ("Quality of OR:" , quality(orNeuron,[False,True,True,True,True,True,True,True]))

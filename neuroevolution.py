@@ -84,7 +84,7 @@ def quality(neuron, expected):
 ##print   (evolveNeuron.getWeights())
 
 #TEST CASES
-nandNeuron = Neuron([2,-1,-1,-1]) #initialize the nand neuron with appropriate weights
+nandNeuron = Neuron([6,-2,-2,-2]) #initialize the nand neuron with appropriate weights
 #I THINK I HAVE PYTHON 3 ON MY COMPUTER BECAUSE IT WON'T LET ME PRINT WITHOUT PARENTHESES
 #I THINK/HOPE IT STILL WORKS ON YOUR MACHINES
 print ("Our NAND:")
@@ -99,7 +99,7 @@ print (nandNeuron.eval([1,1,0]))
 print (nandNeuron.eval([1,1,1]))
 print ("Quality of NAND:" , quality(nandNeuron,[True,True,True,True,True,True,True,False]))
 
-orNeuron = Neuron([-1,1,1,1]) #initialize the or neuron with appropriate weights and 
+orNeuron = Neuron([0,2,2,2]) #initialize the or neuron with appropriate weights and 
 print ("Our OR:")
 #OR returns true for everything except 0,0,0
 print (orNeuron.eval([0,0,0]))

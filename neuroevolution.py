@@ -27,8 +27,6 @@ class Neuron:
             return 1
         else: return 0#if the activation is greater or equal to 0 (step function), fire the neuron (true)       
 
-
-#TODO EVOLVE STUFF
 class NeuronEvolution:
     bias = 1
     weights = []
@@ -53,12 +51,18 @@ class NeuronEvolution:
                 randomWeights=tweakedWeights
         return randomWeights
 
-"""class NeuralNetwork:
-    hidNeuron1 = Neron([])
-    hidNeuron2 = Neron([])
-    outNeuron = Neron([])
-    def __init__():
-        self.data=[]"""
+class NeuralNetwork:
+    def __init__(self, weight1,weight2, weight3):
+        hidNeuron1 =Neuron(weight1)
+        hidNeuron2 =Neruon(weight2)
+        outNeuron =Neruon(weight3)
+        
+    def evaluate(self, inputs):
+        one=hidNeuron1.eval(inputs)
+        two=hidNeuron2.eval(inputs)
+        out=[one,two]
+        return outNeruron(out)
+        
 
 #return the amount of times the output of a neuron was the same as the expected output that was passed in an array
 #this functions tests all inputs in this form 
@@ -74,7 +78,6 @@ def quality(neuron, expected):
         for j in range(neuron.weights.__len__()-2,-1,-1):   #for every binary digit in the input (starting from the number of inputs-1 and going to 0)
             inputs.append(total//(2**j))                #add a digit to the inputs (// is floor division)
             total -= (total//(2**j))*(2**j)             #subtract the binary value of the digit if it was one
-        #print (inputs)                                 #proof that it goes through all possible inputs
         if expected[i]==neuron.eval(inputs):
             correct += 1     #one more of the expected inputs is correct
     return correct
@@ -85,8 +88,6 @@ def quality(neuron, expected):
 
 #TEST CASES
 nandNeuron = Neuron([6,-2,-2,-2]) #initialize the nand neuron with appropriate weights
-#I THINK I HAVE PYTHON 3 ON MY COMPUTER BECAUSE IT WON'T LET ME PRINT WITHOUT PARENTHESES
-#I THINK/HOPE IT STILL WORKS ON YOUR MACHINES
 print ("Our NAND:")
 #NAND returns true for everything except 1,1,1 (ACTUAL NAND)
 print (nandNeuron.eval([0,0,0]))

@@ -23,12 +23,14 @@ class Neuron:
         activation = 0
         for i in range(0,inputs.__len__()): # for every input
             activation += self.weights[i]*inputs[i]
-        return activation >= 0 #if the activation is greater or equal to 0 (step function), fire the neuron (true)       
+        if (activation > 1):
+            return 1
+        else: return 0#if the activation is greater or equal to 0 (step function), fire the neuron (true)       
 
 
 #TODO EVOLVE STUFF
 class NeuronEvolution:
-    bias = 0
+    bias = 1
     weights = []
     number_Of_Tweaks=0;
     randomWeights = []
@@ -50,6 +52,13 @@ class NeuronEvolution:
             if quality(tweakedWeights) > quality(self.randomWeights):
                 randomWeights=tweakedWeights
         return randomWeights
+
+"""class NeuralNetwork:
+    hidNeuron1 = Neron([])
+    hidNeuron2 = Neron([])
+    outNeuron = Neron([])
+    def __init__():
+        self.data=[]"""
 
 #return the amount of times the output of a neuron was the same as the expected output that was passed in an array
 #this functions tests all inputs in this form 

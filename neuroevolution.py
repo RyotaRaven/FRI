@@ -86,13 +86,13 @@ class NeuralNetworkEvolution:
         self.goalOutput = expected
 
     def getWeights(self):
-        number_Of_Tweaks=0
-        randomWeights1= []
-        randomWeights2= []
-        randomWeights3= []
-        tweakedWeights1= []
-        tweakedWeights2= []
-        tweakedWeights3= []
+        self.number_Of_Tweaks=0
+        self.randomWeights1= []
+        self.randomWeights2= []
+        self.randomWeights3= []
+        self.tweakedWeights1= []
+        self.tweakedWeights2= []
+        self.tweakedWeights3= []
         for i in range(0, 4):
             self.randomWeights1.append(random.randint(-10,10))
             self.randomWeights2.append(random.randint(-10,10))
@@ -105,7 +105,7 @@ class NeuralNetworkEvolution:
         sameCount = 0 #count the amount of times the quality doesn't progress, and if it is after some threshold, reassign random weights
         while NetworkQuality(n,self.goalOutput) < 8 :
             print(self.tweakedWeights1, self.tweakedWeights2,self.tweakedWeights3, NetworkQuality(n,self.goalOutput))
-            if sameCount < 100:
+            if sameCount < 200:
                 self.randomWeights1[random.randint(0,len(self.randomWeights1)-1)] += random.randint(-10,10) #increment or decrement a random weight
                 self.randomWeights2[random.randint(0,len(self.randomWeights2)-1)] += random.randint(-10,10) #increment or decrement a random weight
                 self.randomWeights3[random.randint(0,len(self.randomWeights3)-1)] += random.randint(-10,10) #increment or decrement a random weight
@@ -210,8 +210,10 @@ print (network.evaluate([1,1,1]))
 #print   ("final weights", evolveNeuron1.getWeights())
 #evolveNeuron2 = NeuronEvolution([0,1,1,0,1,0,0,0],100) #try to evolve xOR neuron (i've never seen it work, i guess that means our evolution needs optimazation)
 #print   ("final weights", evolveNeuron2.getWeights())
+print("Neural Network NAND")
 evolveNetwork1 = NeuralNetworkEvolution([1,1,1,1,1,1,1,0],100) #try to evolve an nand neural network (works eventually, kinda slow)
 print   ("final weights", evolveNetwork1.getWeights())
 print("\n \n \n")
+print("Neural Network XOR")
 evolveNetwork2 = NeuralNetworkEvolution([0,1,1,0,1,0,0,0],100) #try to evolve an xor neural network (i've never seen it work, i guess that means our evolution needs optimazation)
 print   ("final weights", evolveNetwork2.getWeights())

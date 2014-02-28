@@ -17,28 +17,36 @@ class Neuron:
         else: return 0#if the activation is greater or equal to 0 (step function), fire the neuron (true)
 
 class NeuronEvolution:
-    bias = 1
     weights = []
     number_Of_Tweaks=0;
     randomWeights = []
     tweakedWeights = []
+    goalOutput = []
     activation = 0
 
-    def __init__(self,numTweaks):
-        number_Of_Tweaks = numTweaks
+    def __init__(self,expected,numTweaks):
+        self.number_Of_Tweaks = numTweaks
+        self.goalOutput = expected
 
     def getWeights(self):
-        for i in range(0, 3):
-            self.randomWeights[i] = random.uniform(-1,1)
-        for i in range(0,inputs.__len__()):
-            activation += self.weights[i]*inputs[i]
-
-        while activation<=1:
-            for j in range(0,3):
-                tweakedWeights[j] = self.randomWeights[j]*random.uniform(-1,1)
-            if quality(tweakedWeights) > quality(self.randomWeights):
-                randomWeights = tweakedWeights
-        return randomWeights
+        for i in range(0, 4):
+            self.randomWeights.append(random.randint(-5,5))
+        self.tweakedWeights = self.randomWeights[:] #use the slice operator to keep from aliasing the lists (it took forever to realize the lists were aliasing >.>)
+        sameCount = 0 #count the amount of times the quality doesn't progress, and if it is after some threshold, reassign random weights
+        while quality(Neuron(self.randomWeights),self.goalOutput) < 8 :
+            print(self.tweakedWeights, quality(Neuron(self.randomWeights),self.goalOutput))
+            if sameCount < 500:
+                self.randomWeights[random.randint(0,self.randomWeights.__len__()-1)] += random.randint(-10,10) #increment or decrement a random weight
+            else:
+                sameCount = 0
+                for j in range(0, 4):
+                    self.randomWeights[j] = random.randint(-5,5)
+                self.tweakedWeights = self.randomWeights[:]
+            if quality(Neuron(self.tweakedWeights),self.goalOutput) > quality(Neuron(self.randomWeights),self.goalOutput):
+                self.randomWeights = self.tweakedWeights[:]
+            else:
+                sameCount += 1
+        return self.randomWeights
 
 class NeuralNetwork:
     global hidNeuron1
@@ -87,8 +95,10 @@ def quality(neuron, expected):
     return correct
 
 
-##evolveNeuron = NeuronEvolution(100)
-##print   (evolveNeuron.getWeights())
+evolveNeuron1 = NeuronEvolution([1,1,1,1,1,1,1,0],100) #try to evolve an nand neuron (works eventually, kinda slow)
+print   ("final weights", evolveNeuron1.getWeights())
+#evolveNeuron2 = NeuronEvolution([0,1,1,0,1,0,0,0],100) #try to evolve an nand neuron (i've never seen it work, i guess that means our evolution needs optimazation)
+#print   ("final weights", evolveNeuron2.getWeights())
 
 #TEST CASES
 nandNeuron = Neuron([6,-2,-2,-2]) #initialize the nand neuron with appropriate weights

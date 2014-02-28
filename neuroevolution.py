@@ -206,18 +206,15 @@ print (network.evaluate([1,0,1]))
 print (network.evaluate([1,1,0]))
 print (network.evaluate([1,1,1]))
 
-#evolveNeuron1 = NeuronEvolution([1,1,1,1,1,1,1,0],100) #try to evolve an nand neuron (works eventually, kinda slow)
-#print   ("final weights", evolveNeuron1.getWeights())
+evolveNeuron1 = NeuronEvolution([1,1,1,1,1,1,1,0],100) #try to evolve an nand neuron (works eventually, kinda slow)
+print   ("final weights", evolveNeuron1.getWeights())
 #evolveNeuron2 = NeuronEvolution([0,1,1,0,1,0,0,0],100) #try to evolve xOR neuron (i've never seen it work, i guess that means our evolution needs optimazation)
 #print   ("final weights", evolveNeuron2.getWeights())
 print("Neural Network NAND")
 evolveNetwork1 = NeuralNetworkEvolution([1,1,1,1,1,1,1,0],100) #try to evolve an nand neural network (works eventually, kinda slow)
 print   ("final weights", evolveNetwork1.getWeights())
 print("\n \n \n")
-<<<<<<< HEAD
 evolveNetwork2 = NeuralNetworkEvolution([0,1,1,0,1,0,0,0],100) 
-=======
 print("Neural Network XOR")
 evolveNetwork2 = NeuralNetworkEvolution([0,1,1,0,1,0,0,0],100) #try to evolve an xor neural network (i've never seen it work, i guess that means our evolution needs optimazation)
->>>>>>> 511c388927da568b61969c4b7fa4e269100d455c
 print   ("final weights", evolveNetwork2.getWeights())

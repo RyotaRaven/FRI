@@ -49,20 +49,22 @@ class NeuralNetwork:
     def __init__(self, weight1,weight2, weight3):
         self.hidNeuron1 =Neuron(weight1)
         self.hidNeuron2 =Neuron(weight2)
+        print(weight3)
         self.outNeuron =Neuron(weight3)
         
     def evaluate(self, inputs):
-        input1= [inputs.__len__()+1]
-        input2= [inputs.__len__()+1]
+        input1= [0]
+        input2= [0]
         input1[0]=1
         input2[0]=1
-        for i in range (1, (inputs.__len__()-1)):
-            input1[i]=inputs[i-1]  #index out of bounds
-            input2[i]=inputs[i-1]
+        for i in range (0, (inputs.__len__()-1)):
+            input1.append(inputs[i])
+            input2.append(inputs[i]) 
         one=self.hidNeuron1.eval(input1)
-        two=self.hidNeuron2.eval(input2)
+        two=self.hidNeuron2.eval(input2) 
         out=[1,one,two]
-        return self.outNeruron(out)
+        print(out)
+        return self.outNeuron.eval(out)
         
 
 #return the amount of times the output of a neuron was the same as the expected output that was passed in an array

@@ -86,13 +86,13 @@ class NeuralNetworkEvolution:
         self.goalOutput = expected
 
     def getWeights(self):
-        number_Of_Tweaks=0
-        randomWeights1= []
-        randomWeights2= []
-        randomWeights3= []
-        tweakedWeights1= []
-        tweakedWeights2= []
-        tweakedWeights3= []
+        self.number_Of_Tweaks=0
+        self.randomWeights1= []
+        self.randomWeights2= []
+        self.randomWeights3= []
+        self.tweakedWeights1= []
+        self.tweakedWeights2= []
+        self.tweakedWeights3= []
         for i in range(0, 4):
             self.randomWeights1.append(random.randint(-10,10))
             self.randomWeights2.append(random.randint(-10,10))
@@ -213,5 +213,5 @@ print (network.evaluate([1,1,1]))
 evolveNetwork1 = NeuralNetworkEvolution([1,1,1,1,1,1,1,0],100) #try to evolve an nand neural network (works eventually, kinda slow)
 print   ("final weights", evolveNetwork1.getWeights())
 print("\n \n \n")
-evolveNetwork2 = NeuralNetworkEvolution([0,1,1,0,1,0,0,0],100) #try to evolve an xor neural network (i've never seen it work, i guess that means our evolution needs optimazation)
+evolveNetwork2 = NeuralNetworkEvolution([0,1,1,0,1,0,0,0],100) 
 print   ("final weights", evolveNetwork2.getWeights())

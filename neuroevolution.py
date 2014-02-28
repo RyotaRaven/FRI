@@ -48,15 +48,22 @@ class NeuralNetwork:
     bias = 1
     def __init__(self, weight1, weight2, weight3):
         self.hidNeuron1 = Neuron(weight1)
+        print(weight2)
+        print(len(weight2))
         self.hidNeuron2 = Neuron(weight2)
         print(weight3)
+        print(len(weight3))
         self.outNeuron = Neuron(weight3)
 
     def evaluate(self, inputs):
         #the eval method automatically inserts the bias input as 1 (so you just have to pass in the other inputs)
+        print(inputs)
         one=self.hidNeuron1.eval(inputs)
+        print(one)
         two=self.hidNeuron2.eval(inputs)
+        print(two)
         out=[1,one,two]
+        print(len(out))
         print(out)
         return self.outNeuron.eval(out)
 
